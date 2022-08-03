@@ -1,10 +1,10 @@
-package com.tinqin.academy.formulaonetinqincrud;
+package com.tinqin.academy.rest;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class FormulaOneTinqinCrudApplicationTests {
+class RestApplicationTests {
 
     @Test
     void contextLoads() {
