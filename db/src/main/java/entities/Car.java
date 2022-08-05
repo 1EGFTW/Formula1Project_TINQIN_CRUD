@@ -20,6 +20,7 @@ public class Car {
     private Integer torque;
 
     @ManyToOne
+    @JoinColumn(name = "id_team")
     private Team team;
 
     @OneToMany(mappedBy = "car")
