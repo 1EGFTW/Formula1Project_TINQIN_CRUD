@@ -1,9 +1,7 @@
 package entities;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "race")
@@ -19,6 +17,7 @@ public class Race {
     private Boolean isCompleted;
 
     @ManyToOne
+    @JoinColumn(name = "id_driver")
     private Driver winner;
 
     @Temporal(TemporalType.DATE)
@@ -32,13 +31,13 @@ public class Race {
 
     private Double longitude;
 
-    @OneToMany(mappedBy = "race")
-    private Set<RaceSeason> raceSeasons;
+    @ManyToMany(mappedBy = "races")
+    private List<Season> seasons = new ArrayList<>();
 
     public Race() {
     }
 
-    public Race(Long id_race, String circuitName, Integer year, Boolean isCompleted, Driver winner, Date date, Integer numberOfLaps, Double distancePerLap, Double latitude, Double longitude, Set<RaceSeason> raceSeasons) {
+    public Race(Long id_race, String circuitName, Integer year, Boolean isCompleted, Driver winner, Date date, Integer numberOfLaps, Double distancePerLap, Double latitude, Double longitude, List<Season> seasons) {
         this.id_race = id_race;
         this.circuitName = circuitName;
         this.year = year;
@@ -49,7 +48,15 @@ public class Race {
         this.distancePerLap = distancePerLap;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.raceSeasons = raceSeasons;
+        this.seasons = seasons;
+    }
+
+    public List<Season> getSeasons() {
+        return seasons;
+    }
+
+    public void setSeasons(List<Season> seasons) {
+        this.seasons = seasons;
     }
 
     public Long getId_race() {
@@ -132,24 +139,17 @@ public class Race {
         this.longitude = longitude;
     }
 
-    public Set<RaceSeason> getRaceSeasons() {
-        return raceSeasons;
-    }
-
-    public void setRaceSeasons(Set<RaceSeason> raceSeasons) {
-        this.raceSeasons = raceSeasons;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Race race = (Race) o;
-        return Objects.equals(id_race, race.id_race) && Objects.equals(circuitName, race.circuitName) && Objects.equals(year, race.year) && Objects.equals(isCompleted, race.isCompleted) && Objects.equals(winner, race.winner) && Objects.equals(date, race.date) && Objects.equals(numberOfLaps, race.numberOfLaps) && Objects.equals(distancePerLap, race.distancePerLap) && Objects.equals(latitude, race.latitude) && Objects.equals(longitude, race.longitude) && Objects.equals(raceSeasons, race.raceSeasons);
+        return Objects.equals(id_race, race.id_race) && Objects.equals(circuitName, race.circuitName) && Objects.equals(year, race.year) && Objects.equals(isCompleted, race.isCompleted) && Objects.equals(winner, race.winner) && Objects.equals(date, race.date) && Objects.equals(numberOfLaps, race.numberOfLaps) && Objects.equals(distancePerLap, race.distancePerLap) && Objects.equals(latitude, race.latitude) && Objects.equals(longitude, race.longitude);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_race, circuitName, year, isCompleted, winner, date, numberOfLaps, distancePerLap, latitude, longitude, raceSeasons);
+        return Objects.hash(id_race, circuitName, year, isCompleted, winner, date, numberOfLaps, distancePerLap, latitude, longitude);
     }
 }

@@ -15,9 +15,11 @@ public class Engineer {
     private String lastName;
 
     @ManyToOne
+    @JoinColumn(name = "id_team")
     private Team team;
 
     @ManyToOne
+    @JoinColumn(name = "id_position")
     private Position position;
 
     public Engineer() {

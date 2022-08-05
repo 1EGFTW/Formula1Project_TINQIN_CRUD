@@ -23,9 +23,11 @@ public class Driver {
     private DriverType driverType;
 
     @ManyToOne
+    @JoinColumn(name = "id_team")
     private Team team;
 
     @ManyToOne
+    @JoinColumn(name = "id_car")
     private Car car;
 
     @OneToMany(mappedBy = "champion")
