@@ -1,6 +1,6 @@
 package service.interfaces;
 
-import com.tinqin.academy.api.operations.OperationInput;
+import com.tinqin.academy.api.base.OperationInput;
 
 public interface UpdateService<I extends OperationInput> {
     void update(Long id,I editRequest);

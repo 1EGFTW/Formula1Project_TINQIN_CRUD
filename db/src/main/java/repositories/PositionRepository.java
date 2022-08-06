@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PositionRepository extends CrudRepository<Position,Long> {
+    Position getPositionByPositionName(String positionName);
 }

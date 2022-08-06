@@ -1,6 +1,6 @@
 package com.tinqin.academy.api.models.update;
 
-import com.tinqin.academy.api.operations.OperationInput;
+import com.tinqin.academy.api.base.OperationInput;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,4 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter(AccessLevel.PRIVATE)
 public class CarUpdateRequest implements OperationInput {
+    private String modelName;
+    private Integer horsepower;
+    private Integer torque;
 }

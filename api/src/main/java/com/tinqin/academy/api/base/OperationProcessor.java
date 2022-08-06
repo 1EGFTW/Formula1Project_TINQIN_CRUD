@@ -1,4 +1,4 @@
-package com.tinqin.academy.api.operations;
+package com.tinqin.academy.api.base;
 
 import io.vavr.control.Either;
 

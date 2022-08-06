@@ -1,7 +1,7 @@
 package service.interfaces;
 
-import com.tinqin.academy.api.operations.OperationInput;
-import com.tinqin.academy.api.operations.OperationResult;
+import com.tinqin.academy.api.base.OperationInput;
+import com.tinqin.academy.api.base.OperationResult;
 
 import java.util.List;
 

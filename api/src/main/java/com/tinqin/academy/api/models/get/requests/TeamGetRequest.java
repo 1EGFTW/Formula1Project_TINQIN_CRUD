@@ -1,6 +1,6 @@
 package com.tinqin.academy.api.models.get.requests;
 
-import com.tinqin.academy.api.operations.OperationInput;
+import com.tinqin.academy.api.base.OperationInput;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,4 +10,5 @@ import lombok.Setter;
 @Getter
 @Setter(AccessLevel.PRIVATE)
 public class TeamGetRequest  implements OperationInput {
+    private String teamName;
 }
