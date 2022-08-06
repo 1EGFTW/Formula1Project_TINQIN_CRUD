@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SeasonRepository extends CrudRepository<Season,Long> {
+    Season getSeasonByYear(Integer year);
 }

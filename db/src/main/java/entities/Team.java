@@ -1,11 +1,14 @@
 package entities;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "team")
+@Builder
 public class Team {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

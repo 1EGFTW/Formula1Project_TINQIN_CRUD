@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface EngineerRepository extends CrudRepository<Engineer,Long> {
+    Engineer getEngineerByFirstName(String firstName);
 }
