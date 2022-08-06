@@ -28,6 +28,11 @@
 
         <dependency>
             <groupId>com.tinqin.academy</groupId>
+            <artifactId>api</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.tinqin.academy</groupId>
             <artifactId>db</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
