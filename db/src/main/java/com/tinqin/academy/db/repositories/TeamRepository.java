@@ -1,0 +1,13 @@
+package com.tinqin.academy.db.repositories;
+
+import com.tinqin.academy.db.entities.Team;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.Optional;
+
+@Repository
+public interface TeamRepository extends JpaRepository<Team,Long> {
+    Team getTeamByTeamName(String teamName);
+}

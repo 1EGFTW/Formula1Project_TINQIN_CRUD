@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController("/team")
+@RestController(value = "/team")
 public class TeamController {
     private final TeamProcessor teamProcessor;
 
@@ -20,8 +20,12 @@ public class TeamController {
     }
 
     @PostMapping("/add")
-    public String addTeam(@RequestBody TeamCreateRequest teamCreateRequest){
-        return "Id of created team:" + String.valueOf(teamProcessor.processAdd(teamCreateRequest));
+    public ResponseEntity<?>addTeam(@RequestBody TeamCreateRequest teamCreateRequest){
+        Either<Error,Long> responses=teamProcessor.processAdd(teamCreateRequest);
+        if(responses.isLeft()){
+            return ResponseEntity.status(responses.getLeft().getCode()).body(responses.getLeft().getMessage());
+        }
+        return ResponseEntity.status(HttpStatus.OK).body("Id of created team: "+responses.get());
     }
 
     @DeleteMapping("/delete/{id}")
