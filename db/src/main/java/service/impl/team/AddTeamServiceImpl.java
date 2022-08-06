@@ -2,6 +2,7 @@ package service.impl.team;
 
 import com.tinqin.academy.api.models.create.TeamCreateRequest;
 import entities.Team;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import repositories.TeamRepository;
 import service.interfaces.AddService;

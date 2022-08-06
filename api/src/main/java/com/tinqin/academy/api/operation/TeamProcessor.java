@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface TeamProcessor extends OperationProcessor<TeamGetRequest, TeamGetResponse> {
     @Override
-    Either<Error, TeamGetResponse> process(TeamGetRequest teamGetRequest);
+    Either<Error, TeamGetResponse> process(TeamGetRequest teamName);
 
     Either<Error,TeamGetResponse> processById(Long id);
 

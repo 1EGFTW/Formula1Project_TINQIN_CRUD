@@ -10,37 +10,38 @@ import error.GeneralServerError;
 import error.NoSuchTeamError;
 import io.vavr.control.Either;
 import io.vavr.control.Try;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Component;
-import service.impl.team.*;
+import org.springframework.stereotype.Service;
+import service.interfaces.*;
 
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
-@Component
-public class GetTeamProcessorDomain implements TeamProcessor {
-    private final FindTeamServiceImpl findTeamService;
-    private final AddTeamServiceImpl addTeamService;
-    private final DeleteTeamServiceImpl deleteTeamService;
-    private final UpdateTeamServiceImpl updateTeamServiceImpl;
-    private final GetTeamServiceImpl getTeamService;
+@Service
+public class TeamProcessorDomain implements TeamProcessor {
     private final ConversionService conversionService;
 
-    public GetTeamProcessorDomain(FindTeamServiceImpl findTeamService, AddTeamServiceImpl addTeamService, DeleteTeamServiceImpl deleteTeamService, UpdateTeamServiceImpl updateTeamServiceImpl, GetTeamServiceImpl getTeamService, ConversionService conversionService) {
-        this.findTeamService = findTeamService;
-        this.addTeamService = addTeamService;
-        this.deleteTeamService = deleteTeamService;
-        this.updateTeamServiceImpl = updateTeamServiceImpl;
-        this.getTeamService = getTeamService;
+    private final FindService<TeamGetRequest,TeamGetResponse> findService;
+    private final AddService<TeamCreateRequest> addService;
+    private final DeleteService deleteService;
+    private final UpdateService<TeamUpdateRequest> updateService;
+    private final GetService<TeamGetResponse> getService;
+
+    public TeamProcessorDomain(ConversionService conversionService, FindService<TeamGetRequest, TeamGetResponse> findService, AddService<TeamCreateRequest> addService, DeleteService deleteService, UpdateService<TeamUpdateRequest> updateService, GetService<TeamGetResponse> getService) {
         this.conversionService = conversionService;
+        this.findService = findService;
+        this.addService = addService;
+        this.deleteService = deleteService;
+        this.updateService = updateService;
+        this.getService = getService;
     }
 
 
     @Override
-    public Either<Error, TeamGetResponse> process(TeamGetRequest teamGetRequest) {
+    public Either<Error, TeamGetResponse> process(TeamGetRequest teamName) {
         return Try.of(()->{
-            return conversionService.convert(findTeamService.find(teamGetRequest),TeamGetResponse.class);
+            return conversionService.convert(findService.find(teamName),TeamGetResponse.class);
         }).toEither()
                 .mapLeft(throwable -> {
                     if(throwable instanceof NoSuchElementException)
@@ -52,7 +53,7 @@ public class GetTeamProcessorDomain implements TeamProcessor {
     @Override
     public Either<Error, TeamGetResponse> processById(Long id) {
         return Try.of(()->{
-                    return conversionService.convert(getTeamService.getById(id),TeamGetResponse.class);
+                    return conversionService.convert(getService.getById(id),TeamGetResponse.class);
                 }).toEither()
                 .mapLeft(throwable -> {
                     if(throwable instanceof NoSuchElementException)
@@ -63,7 +64,7 @@ public class GetTeamProcessorDomain implements TeamProcessor {
 
     @Override
     public Either<Error, Long> processAdd(TeamCreateRequest teamCreateRequest) {
-        return Try.of(()->addTeamService.add(teamCreateRequest))
+        return Try.of(()->addService.add(teamCreateRequest))
                 .toEither()
                 .mapLeft(throwable -> {
                     if(throwable instanceof NoSuchElementException)
@@ -74,13 +75,13 @@ public class GetTeamProcessorDomain implements TeamProcessor {
 
     @Override
     public HttpStatus processDelete(Long id) {
-        deleteTeamService.delete(id);
+        deleteService.delete(id);
         return HttpStatus.OK;
     }
 
     @Override
     public HttpStatus processUpdate(Long id,TeamUpdateRequest teamUpdateRequest) {
-        updateTeamServiceImpl.update(id,teamUpdateRequest);
+        updateService.update(id,teamUpdateRequest);
         return HttpStatus.OK;
     }
 }

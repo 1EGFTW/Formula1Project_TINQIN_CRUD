@@ -1,12 +1,14 @@
 package service.impl.team;
 
 import entities.Team;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import repositories.TeamRepository;
 import service.interfaces.GetService;
 import service.mapper.TeamResponseMapper;
 
 @Service
+@Primary
 public class GetTeamServiceImpl implements GetService<TeamResponseMapper> {
     private final TeamRepository teamRepository;
 
