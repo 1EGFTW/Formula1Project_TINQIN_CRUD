@@ -13,6 +13,7 @@ import java.util.Date;
 @Setter(AccessLevel.PRIVATE)
 public class RaceUpdateRequest implements OperationInput {
     private Boolean isCompleted;
-    private String winnerName;
+    private String winnerFirstName;
+    private String winnerLastName;
     private Date date;
 }

@@ -1,6 +1,7 @@
-package com.tinqin.academy.api.models.get.response;
+package com.tinqin.academy.db.service.mapper;
 
 import com.tinqin.academy.api.base.OperationResult;
+import com.tinqin.academy.api.models.get.response.SeasonGetResponse;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,21 +9,20 @@ import lombok.Setter;
 
 import java.util.Date;
 import java.util.List;
-
 @Builder
 @Getter
 @Setter(AccessLevel.PRIVATE)
-public class RaceGetResponse implements OperationResult {
+public class RaceResponseMapper implements OperationResult {
     private String circuitName;
 
     private Integer year;
 
     private Boolean isCompleted;
 
-    private String winnerName;
+    private String winnerFirstName;
+    private String winnerLastName;
 
     private Date date;
 
     private List<SeasonGetResponse> seasons;
-
 }

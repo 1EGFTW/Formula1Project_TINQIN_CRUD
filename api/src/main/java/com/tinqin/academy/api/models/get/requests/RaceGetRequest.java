@@ -14,5 +14,5 @@ import java.util.List;
 @Setter(AccessLevel.PRIVATE)
 public class RaceGetRequest  implements OperationInput {
     private String circuitName;
-    private List<SeasonGetResponse> seasons;
+    private SeasonGetRequest seasons;
 }

@@ -20,7 +20,9 @@ public class RaceCreateRequest  implements OperationInput {
 
     private Boolean isCompleted;
 
-    private String winnerName;
+    private String winnerFirstName;
+
+    private String winnerLastName;
 
     private Date date;
 
@@ -31,5 +33,6 @@ public class RaceCreateRequest  implements OperationInput {
     private Double latitude;
 
     private Double longitude;
-    private List<String> seasons;
+
+    private List<Integer> seasons;
 }

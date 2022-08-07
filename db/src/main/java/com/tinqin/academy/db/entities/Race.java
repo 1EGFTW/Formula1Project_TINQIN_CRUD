@@ -152,7 +152,9 @@ public class Race {
         this.longitude = longitude;
     }
 
-
+    public void addSeason(Season season){
+        this.seasons.add(season);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

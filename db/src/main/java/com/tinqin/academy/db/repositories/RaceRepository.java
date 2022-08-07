@@ -9,4 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface RaceRepository extends JpaRepository<Race,Long> {
     Race getRaceByCircuitName(String circuitName);
     Race getRaceByWinnerFirstName(String winnerName);
+    Race getRaceByCircuitNameAndYear(String circuitName,Integer year);
 }
