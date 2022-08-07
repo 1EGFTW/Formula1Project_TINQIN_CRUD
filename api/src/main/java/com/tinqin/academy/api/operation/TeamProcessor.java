@@ -12,13 +12,13 @@ import org.springframework.http.HttpStatus;
 import java.util.Optional;
 
 public interface TeamProcessor extends OperationProcessor<TeamGetRequest, TeamGetResponse> {
+   @Override
+   Either<Error, TeamGetResponse> processFind(TeamGetRequest teamName);
     @Override
-    Either<Error, TeamGetResponse> process(TeamGetRequest teamName);
-
     Either<Error,TeamGetResponse> processById(Long id);
 
     Either<Error,Long> processAdd(TeamCreateRequest teamCreateRequest);
-
+    @Override
     HttpStatus processDelete(Long id); // TBD
 
     HttpStatus processUpdate(Long id,TeamUpdateRequest teamUpdateRequest);

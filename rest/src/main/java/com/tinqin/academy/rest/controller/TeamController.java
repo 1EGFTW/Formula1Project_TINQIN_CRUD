@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RestController(value = "/team")
+@RestController
 public class TeamController {
     private final TeamProcessor teamProcessor;
 
@@ -19,7 +19,7 @@ public class TeamController {
         this.teamProcessor = teamProcessor;
     }
 
-    @PostMapping("/add")
+    @PostMapping("/team/add")
     public ResponseEntity<?>addTeam(@RequestBody TeamCreateRequest teamCreateRequest){
         Either<Error,Long> responses=teamProcessor.processAdd(teamCreateRequest);
         if(responses.isLeft()){
@@ -28,30 +28,30 @@ public class TeamController {
         return ResponseEntity.status(HttpStatus.OK).body("Id of created team: "+responses.get());
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/team/delete/{id}")
     public HttpStatus deleteTeam(@PathVariable Long id){
         return teamProcessor.processDelete(id);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/team/update/{id}")
     public HttpStatus updateTeam(@RequestBody TeamUpdateRequest teamUpdateRequest,@PathVariable Long id){
         return teamProcessor.processUpdate(id,teamUpdateRequest);
     }
 
-    @GetMapping("/find")
-    public ResponseEntity<?> findPlace(@RequestParam String teamName){
+    @GetMapping("/team/find")
+    public ResponseEntity<?> findTeam(@RequestParam String teamName){
        TeamGetRequest teamGetRequest= TeamGetRequest.builder()
                .teamName(teamName)
                .build();
-       Either<Error,TeamGetResponse> responses=teamProcessor.process(teamGetRequest);
+       Either<Error,TeamGetResponse> responses=teamProcessor.processFind(teamGetRequest);
        if(responses.isLeft()){
            return ResponseEntity.status(responses.getLeft().getCode()).body(responses.getLeft().getMessage());
        }
        return ResponseEntity.status(HttpStatus.OK).body(responses.get());
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> getPlace(@PathVariable Long id){
+    @GetMapping("/team/{id}")
+    public ResponseEntity<?> getTeam(@PathVariable Long id){
         Either<Error,TeamGetResponse> responses=teamProcessor.processById(id);
         if(responses.isLeft()){
             return ResponseEntity.status(responses.getLeft().getCode()).body(responses.getLeft().getMessage());
