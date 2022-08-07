@@ -1,4 +1,4 @@
-package com.tinqin.academy.domain.error;
+package com.tinqin.academy.domain.error.team;
 
 import com.tinqin.academy.api.base.Error;
 import org.springframework.http.HttpStatus;

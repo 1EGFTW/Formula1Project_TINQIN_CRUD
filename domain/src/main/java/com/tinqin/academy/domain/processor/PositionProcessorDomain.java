@@ -4,14 +4,13 @@ import com.tinqin.academy.api.base.Error;
 import com.tinqin.academy.api.models.create.PositionCreateRequest;
 import com.tinqin.academy.api.models.get.requests.PositionGetRequest;
 import com.tinqin.academy.api.models.get.response.PositionGetResponse;
-import com.tinqin.academy.api.models.get.response.TeamGetResponse;
 import com.tinqin.academy.api.models.update.PositionUpdateRequest;
 import com.tinqin.academy.api.operation.PositionProcessor;
 import com.tinqin.academy.db.service.interfaces.*;
 import com.tinqin.academy.db.service.mapper.PositionResponseMapper;
+import com.tinqin.academy.domain.error.position.CouldntAddPositionError;
 import com.tinqin.academy.domain.error.GeneralServerError;
-import com.tinqin.academy.domain.error.NoSuchPositionError;
-import com.tinqin.academy.domain.error.NoSuchTeamError;
+import com.tinqin.academy.domain.error.position.NoSuchPositionError;
 import io.vavr.control.Either;
 import io.vavr.control.Try;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -69,7 +68,7 @@ public class PositionProcessorDomain implements PositionProcessor {
                 .toEither()
                 .mapLeft(throwable -> {
                     if(throwable instanceof NoSuchElementException)
-                        return new NoSuchPositionError();
+                        return new CouldntAddPositionError();
                     return new GeneralServerError();
                 });
     }

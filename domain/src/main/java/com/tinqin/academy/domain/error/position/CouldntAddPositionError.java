@@ -1,9 +1,9 @@
-package com.tinqin.academy.domain.error;
+package com.tinqin.academy.domain.error.position;
 
 import com.tinqin.academy.api.base.Error;
 import org.springframework.http.HttpStatus;
 
-public class NoSuchTeamError implements Error {
+public class CouldntAddPositionError implements Error {
     @Override
     public HttpStatus getCode() {
         return HttpStatus.NOT_FOUND;
@@ -11,6 +11,6 @@ public class NoSuchTeamError implements Error {
 
     @Override
     public String getMessage() {
-        return "No such team!";
+        return "Couldn't add position";
     }
 }

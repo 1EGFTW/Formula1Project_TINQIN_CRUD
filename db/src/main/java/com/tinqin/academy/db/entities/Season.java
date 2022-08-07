@@ -1,10 +1,12 @@
 package com.tinqin.academy.db.entities;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+@Builder
 @Entity
 @Table(name = "season")
 public class Season {
