@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface DriverRepository extends JpaRepository<Driver,Long> {
-    Driver getDriverByFirstName(String firstName);
+    Driver getDriverByFirstNameAndLastName(String firstName,String lastName);
     Driver getDriverByDriverTypeContaining(String driverType);
     List<Driver> getDriversByTeamTeamName(String teamName);
 }

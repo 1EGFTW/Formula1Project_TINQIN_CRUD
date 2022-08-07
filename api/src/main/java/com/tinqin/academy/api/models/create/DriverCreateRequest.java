@@ -19,6 +19,7 @@ public class DriverCreateRequest  implements OperationInput {
     private Integer driverPoints;
 
     private String driverType;
+    private Integer championships;
 
     private String teamName;
 

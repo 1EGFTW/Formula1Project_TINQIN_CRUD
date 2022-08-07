@@ -10,5 +10,6 @@ import lombok.Setter;
 @Getter
 @Setter(AccessLevel.PRIVATE)
 public class DriverGetRequest  implements OperationInput {
-    private String driverName;
+    private String firstName;
+    private String lastName;
 }

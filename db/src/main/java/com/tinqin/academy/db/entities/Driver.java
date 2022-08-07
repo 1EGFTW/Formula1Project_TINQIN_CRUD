@@ -5,7 +5,7 @@ import lombok.Builder;
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
-@Builder
+
 @Entity
 @Table(name = "driver")
 public class Driver {
@@ -20,6 +20,8 @@ public class Driver {
     private Integer age;
 
     private Integer driverPoints;
+
+    private Integer championships;
 
     @Enumerated(EnumType.STRING)
     private DriverType driverType;
@@ -50,6 +52,17 @@ public class Driver {
         this.seasons = seasons;
     }
 
+    public Driver(String firstName, String lastName, Integer age, Integer driverPoints, Integer championships, DriverType driverType, Team team, Car car) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.driverPoints = driverPoints;
+        this.championships = championships;
+        this.driverType = driverType;
+        this.team = team;
+        this.car = car;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -61,6 +74,14 @@ public class Driver {
     @Override
     public int hashCode() {
         return Objects.hash(id_driver, firstName, lastName, age, driverPoints, driverType, team, car, seasons);
+    }
+
+    public Integer getChampionships() {
+        return championships;
+    }
+
+    public void setChampionships(Integer championships) {
+        this.championships = championships;
     }
 
     public Long getId_driver() {
