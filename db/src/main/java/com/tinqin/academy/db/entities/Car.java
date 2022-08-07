@@ -1,9 +1,10 @@
 package com.tinqin.academy.db.entities;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
-
 @Entity
 @Table(name = "car")
 public class Car {
@@ -30,13 +31,11 @@ public class Car {
     public Car() {
     }
 
-    public Car(String modelName, Integer horsepower, Integer torque, Team team, Set<Driver> drivers, Set<Race> races) {
+    public Car(String modelName, Integer horsepower, Integer torque, Team team) {
         this.modelName = modelName;
         this.horsepower = horsepower;
         this.torque = torque;
         this.team = team;
-        this.drivers = drivers;
-        this.races = races;
     }
 
     public Long getId_car() {

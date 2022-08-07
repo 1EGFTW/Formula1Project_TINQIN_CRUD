@@ -1,9 +1,11 @@
 package com.tinqin.academy.db.entities;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
-
+@Builder
 @Entity
 @Table(name = "driver")
 public class Driver {

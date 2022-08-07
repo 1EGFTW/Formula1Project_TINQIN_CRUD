@@ -1,8 +1,10 @@
 package com.tinqin.academy.db.entities;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.util.*;
-
+@Builder
 @Entity
 @Table(name = "race")
 public class Race {

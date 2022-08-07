@@ -3,7 +3,7 @@ package com.tinqin.academy.db.service.impl.team;
 import org.springframework.stereotype.Service;
 import com.tinqin.academy.db.repositories.TeamRepository;
 import com.tinqin.academy.db.service.interfaces.DeleteService;
-@Service
+@Service("team")
 public class DeleteTeamServiceImpl implements DeleteService {
     private final TeamRepository teamRepository;
 

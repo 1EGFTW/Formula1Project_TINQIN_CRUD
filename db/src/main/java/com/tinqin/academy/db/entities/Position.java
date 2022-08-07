@@ -1,11 +1,14 @@
 package com.tinqin.academy.db.entities;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @Table(name = "position")
+@Builder
 public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
