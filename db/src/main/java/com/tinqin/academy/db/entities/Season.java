@@ -6,7 +6,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-@Builder
 @Entity
 @Table(name = "season")
 public class Season {
@@ -34,11 +33,14 @@ public class Season {
     public Season() {
     }
 
-    public Season(Long id_season, Integer year, Driver champion, List<Race> races) {
-        this.id_season = id_season;
+    public Season( Integer year) {
+        this.year = year;
+    }
+
+    public Season(Integer year, Driver champion,List<Race> races) {
         this.year = year;
         this.champion = champion;
-        this.races = races;
+        this.races=races;
     }
 
     public List<Race> getRaces() {
