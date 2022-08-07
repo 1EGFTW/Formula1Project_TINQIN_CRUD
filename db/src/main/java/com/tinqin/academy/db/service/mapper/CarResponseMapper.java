@@ -1,4 +1,4 @@
-package com.tinqin.academy.api.models.get.response;
+package com.tinqin.academy.db.service.mapper;
 
 import com.tinqin.academy.api.base.OperationResult;
 import lombok.AccessLevel;
@@ -7,9 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Builder
-@Getter
 @Setter(AccessLevel.PRIVATE)
-public class CarGetResponse  implements OperationResult {
+@Getter
+public class CarResponseMapper implements OperationResult {
     private String modelName;
 
     private Integer horsepower;
