@@ -22,7 +22,4 @@ public class RaceGetResponse implements OperationResult {
 
     private Date date;
 
-    private String temp;
-
-    private String condition;
 }

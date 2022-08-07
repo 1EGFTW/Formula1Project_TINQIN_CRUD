@@ -4,7 +4,6 @@ import lombok.Builder;
 
 import javax.persistence.*;
 import java.util.*;
-@Builder
 @Entity
 @Table(name = "race")
 public class Race {
@@ -51,6 +50,18 @@ public class Race {
         this.latitude = latitude;
         this.longitude = longitude;
         this.seasons = seasons;
+    }
+
+    public Race(String circuitName, Integer year, Boolean isCompleted, Driver winner, Date date, Integer numberOfLaps, Double distancePerLap, Double latitude, Double longitude) {
+        this.circuitName = circuitName;
+        this.year = year;
+        this.isCompleted = isCompleted;
+        this.winner = winner;
+        this.date = date;
+        this.numberOfLaps = numberOfLaps;
+        this.distancePerLap = distancePerLap;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public List<Season> getSeasons() {
