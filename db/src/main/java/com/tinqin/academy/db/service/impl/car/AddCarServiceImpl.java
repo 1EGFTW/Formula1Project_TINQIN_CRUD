@@ -5,9 +5,11 @@ import com.tinqin.academy.db.entities.Car;
 import com.tinqin.academy.db.entities.Engineer;
 import com.tinqin.academy.db.entities.Position;
 import com.tinqin.academy.db.entities.Team;
+import com.tinqin.academy.db.exception.TeamNotFoundException;
 import com.tinqin.academy.db.repositories.CarRepository;
 import com.tinqin.academy.db.repositories.TeamRepository;
 import com.tinqin.academy.db.service.interfaces.AddService;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -23,6 +25,7 @@ public class AddCarServiceImpl implements AddService<CarCreateRequest> {
         this.teamRepository = teamRepository;
     }
 
+    @SneakyThrows
     @Override
     public Long add(CarCreateRequest request) {
         return Stream.of(carRepository.getCarByModelName(request.getModelName()))

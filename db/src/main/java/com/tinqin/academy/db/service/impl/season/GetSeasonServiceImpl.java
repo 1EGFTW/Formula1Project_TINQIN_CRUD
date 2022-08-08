@@ -29,7 +29,6 @@ public class GetSeasonServiceImpl implements GetService<SeasonResponseMapper> {
                     .map(race -> RaceGetResponse.builder()
                             .circuitName(race.getCircuitName())
                             .date(race.getDate())
-                            .year(race.getYear())
                             .isCompleted(race.getCompleted())
                             .winnerName(race.getWinner().getFirstName()+" "+race.getWinner().getLastName())
                             .build())

@@ -20,7 +20,7 @@ public class SeasonController {
         this.seasonProcessor = seasonProcessor;
     }
 
-    @PostMapping("/Season/add")
+    @PostMapping("/season/add")
     public ResponseEntity<?> addSeason(@RequestBody SeasonCreateRequest seasonCreateRequest){
         Either<Error,Long> responses=seasonProcessor.processAdd(seasonCreateRequest);
         if(responses.isLeft()){

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Date;
+import java.util.List;
 
 @Builder
 @Getter
@@ -14,12 +15,12 @@ import java.util.Date;
 public class RaceGetResponse implements OperationResult {
     private String circuitName;
 
-    private Integer year;
-
     private Boolean isCompleted;
 
     private String winnerName;
 
     private Date date;
+
+    private List<Integer> seasons;
 
 }

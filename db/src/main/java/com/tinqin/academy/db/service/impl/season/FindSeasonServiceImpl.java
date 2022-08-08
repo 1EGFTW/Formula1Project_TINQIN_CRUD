@@ -31,7 +31,6 @@ public class FindSeasonServiceImpl implements FindService<SeasonGetRequest, Seas
                                 .map(race -> RaceGetResponse.builder()
                                         .circuitName(race.getCircuitName())
                                         .date(race.getDate())
-                                        .year(race.getYear())
                                         .isCompleted(race.getCompleted())
                                         .winnerName(race.getWinner().getFirstName()+" "+race.getWinner().getLastName())
                                         .build())

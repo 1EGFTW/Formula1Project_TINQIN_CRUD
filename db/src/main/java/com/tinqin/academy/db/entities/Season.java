@@ -76,6 +76,10 @@ public class Season {
         this.champion = champion;
     }
 
+    public void addRace(Race race){
+        this.races.add(race);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

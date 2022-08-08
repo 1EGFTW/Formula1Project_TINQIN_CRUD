@@ -8,7 +8,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "position")
-@Builder
 public class Position {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,6 +25,10 @@ public class Position {
     }
 
     public Position() {
+    }
+
+    public Position(String positionName) {
+        this.positionName = positionName;
     }
 
     @Override

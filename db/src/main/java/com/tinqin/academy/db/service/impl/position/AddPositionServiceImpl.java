@@ -21,9 +21,7 @@ public class AddPositionServiceImpl implements AddService<PositionCreateRequest>
         return Stream.of(positionRepository.getPositionByPositionName(request.getPositionName()))
                 .peek(position -> {
                     if(position==null){
-                        positionRepository.save(Position.builder()
-                                        .positionName(request.getPositionName())
-                                .build());
+                        positionRepository.save(new Position(request.getPositionName()));
                     }
                 })
                 .map(position -> positionRepository.getPositionByPositionName(request.getPositionName()))
