@@ -10,7 +10,6 @@ public class RaceResponseMapperToRaceGetResponseConverter implements Converter<R
     @Override
     public RaceGetResponse convert(RaceResponseMapper source) {
         return RaceGetResponse.builder()
-                .year(source.getYear())
                 .winnerName(source.getWinnerFirstName()+" "+source.getWinnerLastName())
                 .isCompleted(source.getIsCompleted())
                 .date(source.getDate())

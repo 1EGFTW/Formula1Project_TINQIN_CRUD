@@ -16,8 +16,6 @@ import java.util.List;
 public class RaceCreateRequest  implements OperationInput {
     private String circuitName;
 
-    private Integer year;
-
     private Boolean isCompleted;
 
     private String winnerFirstName;

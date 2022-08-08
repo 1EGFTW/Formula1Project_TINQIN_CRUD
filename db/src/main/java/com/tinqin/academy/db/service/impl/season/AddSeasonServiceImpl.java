@@ -36,10 +36,8 @@ public class AddSeasonServiceImpl implements AddService<SeasonCreateRequest> {
                                 .getDriverByFirstNameAndLastName(request.getChampionFirstName(),
                                         request.getChampionLastName());
                         List<Race> races= request.getRaces().stream()
-                                .map(race -> {
-                                    return Optional.ofNullable(raceRepository.getRaceByCircuitName(race))
-                                            .orElseThrow();
-                                }).toList();
+                                .map(raceRepository::getRaceByCircuitName)
+                                .toList();
                        seasonRepository.save(new Season(request.getYear(),driver,races));
                     }
                 })

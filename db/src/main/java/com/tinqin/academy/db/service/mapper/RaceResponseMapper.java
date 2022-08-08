@@ -15,8 +15,6 @@ import java.util.List;
 public class RaceResponseMapper implements OperationResult {
     private String circuitName;
 
-    private Integer year;
-
     private Boolean isCompleted;
 
     private String winnerFirstName;
@@ -24,5 +22,5 @@ public class RaceResponseMapper implements OperationResult {
 
     private Date date;
 
-    private List<SeasonGetResponse> seasons;
+    private List<Integer> seasons;
 }

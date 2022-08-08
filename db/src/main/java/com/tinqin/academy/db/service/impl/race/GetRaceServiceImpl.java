@@ -22,13 +22,10 @@ public class GetRaceServiceImpl implements GetService<RaceResponseMapper> {
     @Override
     public RaceResponseMapper getById(Long id) {
         Race race=raceRepository.findById(id).orElseThrow();
-        List<SeasonGetResponse> seasons=new ArrayList<>();
+        List<Integer> seasons=new ArrayList<>();
         if(race.getSeasons()!=null){
             seasons=race.getSeasons().stream()
-                    .map(season -> SeasonGetResponse.builder()
-                            .winner(race.getWinner().getFirstName()+" "+race.getWinner().getLastName())
-                            .year(String.valueOf(race.getYear()))
-                            .build())
+                    .map(season -> season.getYear())
                     .collect(Collectors.toList());
         }
         if(seasons!=null){
@@ -39,7 +36,6 @@ public class GetRaceServiceImpl implements GetService<RaceResponseMapper> {
                     .winnerLastName(null)
                     .winnerFirstName(null)
                     .seasons(seasons)
-                    .year(race.getYear())
                     .build();
         }
         if(race.getWinner()!=null){
@@ -50,11 +46,9 @@ public class GetRaceServiceImpl implements GetService<RaceResponseMapper> {
                     .winnerLastName(race.getWinner().getLastName())
                     .winnerFirstName(race.getWinner().getFirstName())
                     .seasons(seasons)
-                    .year(race.getYear())
                     .build();
         }
         return RaceResponseMapper.builder()
-                .year(race.getYear())
                 .circuitName(race.getCircuitName())
                 .winnerFirstName(null)
                 .winnerLastName(null)

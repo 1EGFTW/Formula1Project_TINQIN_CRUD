@@ -13,8 +13,6 @@ public class Race {
 
     private String circuitName;
 
-    private Integer year;
-
     private Boolean isCompleted;
 
     @ManyToOne
@@ -38,10 +36,8 @@ public class Race {
     public Race() {
     }
 
-    public Race(Long id_race, String circuitName, Integer year, Boolean isCompleted, Driver winner, Date date, Integer numberOfLaps, Double distancePerLap, Double latitude, Double longitude, List<Season> seasons) {
-        this.id_race = id_race;
+    public Race(String circuitName, Boolean isCompleted, Driver winner, Date date, Integer numberOfLaps, Double distancePerLap, Double latitude, Double longitude, List<Season> seasons) {
         this.circuitName = circuitName;
-        this.year = year;
         this.isCompleted = isCompleted;
         this.winner = winner;
         this.date = date;
@@ -52,9 +48,8 @@ public class Race {
         this.seasons = seasons;
     }
 
-    public Race(String circuitName, Integer year, Boolean isCompleted, Driver winner, Date date, Integer numberOfLaps, Double distancePerLap, Double latitude, Double longitude) {
+    public Race(String circuitName, Boolean isCompleted, Driver winner, Date date, Integer numberOfLaps, Double distancePerLap, Double latitude, Double longitude) {
         this.circuitName = circuitName;
-        this.year = year;
         this.isCompleted = isCompleted;
         this.winner = winner;
         this.date = date;
@@ -88,13 +83,6 @@ public class Race {
         this.circuitName = circuitName;
     }
 
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
-    }
 
     public Boolean getCompleted() {
         return isCompleted;
@@ -160,11 +148,11 @@ public class Race {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Race race = (Race) o;
-        return Objects.equals(id_race, race.id_race) && Objects.equals(circuitName, race.circuitName) && Objects.equals(year, race.year) && Objects.equals(isCompleted, race.isCompleted) && Objects.equals(winner, race.winner) && Objects.equals(date, race.date) && Objects.equals(numberOfLaps, race.numberOfLaps) && Objects.equals(distancePerLap, race.distancePerLap) && Objects.equals(latitude, race.latitude) && Objects.equals(longitude, race.longitude);
+        return Objects.equals(id_race, race.id_race) && Objects.equals(circuitName, race.circuitName)  && Objects.equals(isCompleted, race.isCompleted) && Objects.equals(winner, race.winner) && Objects.equals(date, race.date) && Objects.equals(numberOfLaps, race.numberOfLaps) && Objects.equals(distancePerLap, race.distancePerLap) && Objects.equals(latitude, race.latitude) && Objects.equals(longitude, race.longitude);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_race, circuitName, year, isCompleted, winner, date, numberOfLaps, distancePerLap, latitude, longitude);
+        return Objects.hash(id_race, circuitName,  isCompleted, winner, date, numberOfLaps, distancePerLap, latitude, longitude);
     }
 }

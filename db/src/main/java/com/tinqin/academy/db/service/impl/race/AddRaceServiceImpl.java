@@ -10,6 +10,10 @@ import com.tinqin.academy.db.repositories.SeasonRepository;
 import com.tinqin.academy.db.service.interfaces.AddService;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -25,32 +29,37 @@ public class AddRaceServiceImpl implements AddService<RaceCreateRequest> {
     }
 
     @Override
-    public Long add(RaceCreateRequest request) { //needs to be cleaned up
-        return Stream.of(raceRepository.getRaceByCircuitNameAndYear(request.getCircuitName(), request.getYear()))
+    public Long add(RaceCreateRequest request) {//needs to be cleaned up
+        Date date=request.getDate();
+        Integer year= date.getYear()+1900;
+        return Stream.of(raceRepository.getRaceByCircuitNameAndDate(request.getCircuitName(),date))
                 .peek(race -> {
                     if(race==null){
-                        Season season=seasonRepository.getSeasonByYear(request.getYear());
+                        List<Season> seasons= request.getSeasons().stream()
+                                .map(season -> seasonRepository.getSeasonByYear(season))
+                                .toList();
                         Driver driver=driverRepository.getDriverByFirstNameAndLastName(request.getWinnerFirstName(),
                                 request.getWinnerLastName());
                         Race raceToAdd=new Race(request.getCircuitName(),
-                                request.getYear(),
                                 request.getIsCompleted(),
                                 driver,
                                 request.getDate(),
                                 request.getNumberOfLaps(),
                                 request.getDistancePerLap(),
                                 request.getLatitude(),
-                                request.getLongitude());
-                        raceToAdd.addSeason(season);
+                                request.getLongitude(),
+                                seasons);
+
                         raceRepository.save(raceToAdd);
-                        /*raceToAdd=raceRepository.getRaceByCircuitNameAndYear(request.getCircuitName(), request.getYear());
-                        raceToAdd.addSeason(season);
-                        raceRepository.save(raceToAdd);*/
-                        season.addRace(raceToAdd);
-                        seasonRepository.save(season);
+                        Race savedRace=raceRepository.getRaceByCircuitNameAndDate(request.getCircuitName(), date);
+                        seasons.stream()
+                                        .forEach(season -> {
+                                            season.addRace(savedRace);
+                                            seasonRepository.save(season);
+                                        });
                     }
                 })
-                .map(race ->raceRepository.getRaceByCircuitNameAndYear(request.getCircuitName(), request.getYear()))
+                .map(race ->raceRepository.getRaceByCircuitNameAndDate(request.getCircuitName(), date))
                 .findFirst()
                 .orElseThrow()
                 .getId_race();
